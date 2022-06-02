@@ -10,7 +10,13 @@ function addBook() {
     const year = document.getElementById("inputBookYear").value;
     const book = makeList(title, writer, year);
 
-    unfinishedBook.append(book);
+    const checkBox = document.getElementById("inputBookIsComplete");
+
+    if (checkBox.checked) {
+        finishedBook.append(book);
+    } else {
+        unfinishedBook.append(book);
+    }
 }
 
 //menampilkan buku di rak
@@ -30,7 +36,7 @@ function makeList(text, author, timestamp, isFinished) {
     container.classList.add("book_item")
     container.append(textTitle, textAuthor, textTimestamp);
 
-    if(isFinished) {
+    if (isFinished) {
         container.append(createUndoButton(), createDeleteButton());
     } else {
         container.append(createFinishedButton(), createDeleteButton());
